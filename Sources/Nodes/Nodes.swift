@@ -13,6 +13,16 @@ public class Node<T: Hashable> {
         node.parent = self
     }
     
+    /// Returns all other nodes with the same parent.
+    public var siblings: [Node] {
+        return siblingsIncludingSelf.filter { $0 != self }
+    }
+    
+    /// Returns all nodes (including the current node) with the same parent.
+    public var siblingsIncludingSelf: [Node] {
+        return parent?.children ?? []
+    }
+    
     /// Returns all parent nodes.
     public var ancestors: [Node] {
         var nodes = [Node]()
