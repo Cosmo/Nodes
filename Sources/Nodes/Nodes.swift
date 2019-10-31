@@ -88,7 +88,7 @@ public class Node<T: Hashable> {
         return children.count
     }
     
-    /// Returns all children, moving down from the current node to all leaves.
+    /// Returns all descendants, traversing the entire tree.
     public var descendants: [Node] {
         var nodes = [Node]()
         if isBranch {
