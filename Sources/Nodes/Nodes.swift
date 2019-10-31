@@ -1,4 +1,4 @@
-public class Node<T: Hashable> {
+public class Node<T: Equatable> {
     public var value: T
     public weak var parent: Node?
     
