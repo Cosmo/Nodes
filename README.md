@@ -6,13 +6,13 @@ Nodes provides a generic tree data structure with support of multiple children. 
 
 Create a new `Node` with `init(value: T)` :
 
-```
+```swift
 let root = Node(value: "Hand")
 ```
 
 Add children with `addChild(node: Node)`:
 
-```
+```swift
 root.addChild(node: Node(value: "Thumb"))
 root.addChild(node: Node(value: "Index finger"))
 root.addChild(node: Node(value: "Middle finger"))
@@ -22,7 +22,7 @@ root.addChild(node: Node(value: "Little finger"))
 
 Print tree to console:
 
-```
+```swift
 print(root.lineBasedDescription)
 ```
 
@@ -43,98 +43,98 @@ Hand
 
 ```swift
 /// Returns all parent nodes.
-public var ancestors: [Node]
+var ancestors: [Node]
 ```
 
 ```swift
 /// Returns all parent nodes, including the current node.
-public var ancestorsIncludingSelf: [Node]
+var ancestorsIncludingSelf: [Node]
 ```
 
 ```swift
 /// A Boolean value indicating whether the current node is the top node.
-public var isRoot: Bool
+var isRoot: Bool
 ```
 
 ```swift
 /// Returns the top node.
-public var root: Node
+var root: Node
 ```
 
 ### Descendants
 
 ```swift
 /// Adds a sub-node.
-public func addChild(node: Node)
+func addChild(node: Node)
 ```
 
 ```swift
 /// Returns the number of children.
-public var degree: Int
+var degree: Int
 ```
 
 ```swift
 /// Returns all descendants, traversing the entire tree.
-public var descendants: [Node]
+var descendants: [Node]
 ```
 
 ### Leaves
 
 ```swift
 /// A Boolean value indicating whether the node is without children.
-public var isLeaf: Bool
+var isLeaf: Bool
 ```
 
 ```swift
 /// Returns all nodes with no children.
-public var leaves: [Node]
+var leaves: [Node]
 ```
 
 ```swift
 /// Returns the number of leaves.
-public var breadth: Int
+var breadth: Int
 ```
 
 ### Branches
 
 ```swift
 /// A Boolean value indicating whether the node has children.
-public var isBranch: Bool
+var isBranch: Bool
 ```
 
 ```swift
 /// Returns all nodes with at least one child.
-public var branches: [Node]
+var branches: [Node]
 ```
 
 ### Siblings
 
 ```swift
 /// Returns all other nodes with the same parent.
-public var siblings: [Node]
+var siblings: [Node]
 ```
 
 ```swift
 /// Returns all nodes (including the current node) with the same parent.
-public var siblingsIncludingSelf: [Node]
+var siblingsIncludingSelf: [Node]
 ```
 
 ### Position
 
 ```swift
 /// Returns the distance between a node and the root.
-public var depth: Int
+var depth: Int
 ```
 
 ```swift
 /// The number of edges between the current node and the root.
-public var level: Int
+var level: Int
 ```
 
 ### Textual representation
 
 ```swift
-public var lineBasedDescription: String
+var lineBasedDescription: String
 ```
 
 
