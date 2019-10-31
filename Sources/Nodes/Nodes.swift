@@ -102,4 +102,36 @@ public class Node<T: Hashable> {
         }
         return nodes
     }
+    
+    /// Returns a line based tree representation starting with the current node.
+    var lineBasedDescription: String {
+        return buildLines()
+    }
+}
+
+extension Node: CustomStringConvertible {
+    public var description: String {
+        return "\(value)"
+    }
+}
+
+extension Node: Equatable {
+    public static func == (lhs: Node, rhs: Node) -> Bool {
+        return lhs.value == rhs.value && lhs.parent == rhs.parent
+    }
+}
+
+extension Node {
+    private typealias PrefixStrings = (prefix: String, childrenPrefix: String)
+    private var linePrefixes: PrefixStrings { return ("├── ", "│   ") }
+    private var lastLinePrefixes: PrefixStrings { return ("└── ", "    ") }
+    
+    private func buildLines(_ previousPrefixes: PrefixStrings = ("", "")) -> String {
+        return children.reduce("\(previousPrefixes.prefix)\(value)\n") {
+            let currentPrefixStrings = children.last == $1 ? lastLinePrefixes : linePrefixes
+            let prefixes = (previousPrefixes.childrenPrefix + currentPrefixStrings.prefix,
+                            previousPrefixes.childrenPrefix + currentPrefixStrings.childrenPrefix)
+            return $0 + $1.buildLines(prefixes)
+        }
+    }
 }
