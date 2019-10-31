@@ -1,5 +1,108 @@
 # Nodes
 
+## Features
+
+### Ancestors
+
+```swift
+/// Returns all parent nodes.
+public var ancestors: [Node]
+```
+
+```swift
+/// Returns all parent nodes, including the current node.
+public var ancestorsIncludingSelf: [Node]
+```
+
+```swift
+/// A Boolean value indicating whether the current node is the top node.
+public var isRoot: Bool
+```
+
+```swift
+/// Returns the top node.
+public var root: Node
+```
+
+### Descendants
+
+```swift
+/// Adds a sub-node.
+public func addChild(node: Node)
+```
+
+```swift
+/// Returns the number of children.
+public var degree: Int
+```
+
+```swift
+/// Returns all descendants, traversing the entire tree.
+public var descendants: [Node]
+```
+
+### Leaves
+
+```swift
+/// A Boolean value indicating whether the node is without children.
+public var isLeaf: Bool
+```
+
+```swift
+/// Returns all nodes with no children.
+public var leaves: [Node]
+```
+
+```swift
+/// Returns the number of leaves.
+public var breadth: Int
+```
+
+### Branches
+
+```swift
+/// A Boolean value indicating whether the node has children.
+public var isBranch: Bool
+```
+
+```swift
+/// Returns all nodes with at least one child.
+public var branches: [Node]
+```
+
+### Siblings
+
+```swift
+/// Returns all other nodes with the same parent.
+public var siblings: [Node]
+```
+
+```swift
+/// Returns all nodes (including the current node) with the same parent.
+public var siblingsIncludingSelf: [Node]
+```
+
+### Position
+
+```swift
+/// Returns the distance between a node and the root.
+public var depth: Int
+```
+
+```swift
+/// The number of edges between the current node and the root.
+public var level: Int
+```
+
+### Textual representation
+
+```swift
+public var lineBasedDescription: String
+```
+
+
+## Example
+
 ```swift
 let root = Node(value: "Apple")
 
@@ -43,9 +146,7 @@ let appleTV = Node(value: "Apple TV")
 setTopBoxes.addChild(node: appleTV)
 ```
 
-```swift
-print(root.lineBasedDescription)
-
+```
 Apple
 ├── Desktops
 │   ├── Mac Pro
