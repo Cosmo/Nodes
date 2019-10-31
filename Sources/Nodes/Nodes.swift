@@ -119,7 +119,7 @@ public class Node<T: Hashable> {
 
 extension Node {
     /// Returns a line based tree representation starting with the current node.
-    var lineBasedDescription: String {
+    public var lineBasedDescription: String {
         return buildLines()
     }
     
