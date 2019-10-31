@@ -35,7 +35,7 @@ public class Node<T: Hashable> {
     
     /// Returns all parent nodes, including the current node.
     public var ancestorsIncludingSelf: [Node] {
-        return ancestors + [self]
+        return [self] + ancestors
     }
     
     /// A Boolean value indicating whether the node is without children.
