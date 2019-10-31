@@ -33,7 +33,7 @@ public class Node<T: Equatable> {
     
     /// Returns the top node.
     public var root: Node {
-        return ancestors.last ?? self
+        return parent?.root ?? self
     }
     
     // MARK: - Descendants
