@@ -197,10 +197,10 @@ Apple
 ├── Notebooks
 │   └── MacBook Pro
 └── Devices
-├── Handhelds
-│   ├── iPod
-│   ├── iPhone
-│   └── Newton
-└── Set-top boxes
-└── Apple TV
+    ├── Handhelds
+    │   ├── iPod
+    │   ├── iPhone
+    │   └── Newton
+    └── Set-top boxes
+        └── Apple TV
 ```
