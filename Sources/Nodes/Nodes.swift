@@ -80,10 +80,7 @@ public class Node<T: Hashable> {
     
     /// Returns the top node.
     public var root: Node {
-        guard let rootNode = ancestorsIncludingSelf.first else {
-            fatalError("Root element not found.")
-        }
-        return rootNode
+        return ancestors.last ?? self
     }
     
     /// Returns the number of children.
