@@ -1,5 +1,42 @@
 # Nodes
 
+Nodes provides a generic tree data structure with support of multiple children. Written in Swift.
+
+## Usage
+
+Create a new `Node` with `init(value: T)` :
+
+```
+let root = Node(value: "Hand")
+```
+
+Add children with `addChild(node: Node)`:
+
+```
+root.addChild(node: Node(value: "Thumb"))
+root.addChild(node: Node(value: "Index finger"))
+root.addChild(node: Node(value: "Middle finger"))
+root.addChild(node: Node(value: "Ring finger"))
+root.addChild(node: Node(value: "Little finger"))
+```
+
+Print tree to console:
+
+```
+print(root.lineBasedDescription)
+```
+
+Result:
+
+```
+Hand
+├── Thumb
+├── Index finger
+├── Middle finger
+├── Ring finger
+└── Little finger
+```
+
 ## Features
 
 ### Ancestors
@@ -144,7 +181,12 @@ devices.addChild(node: setTopBoxes)
 
 let appleTV = Node(value: "Apple TV")
 setTopBoxes.addChild(node: appleTV)
+
+
+print(root.lineBasedDescription)
 ```
+
+Output:
 
 ```
 Apple
@@ -162,5 +204,3 @@ Apple
 └── Set-top boxes
 └── Apple TV
 ```
-
-
