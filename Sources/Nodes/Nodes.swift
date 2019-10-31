@@ -32,4 +32,9 @@ public class Node<T: Hashable> {
         }
         return nodes
     }
+    
+    /// Returns all parent nodes, including the current node.
+    public var ancestorsIncludingSelf: [Node] {
+        return ancestors + [self]
+    }
 }
