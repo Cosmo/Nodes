@@ -3,48 +3,48 @@ import XCTest
 
 final class NodesTests: XCTestCase {
     func testTree() {
-        let root = Node(value: "Apple")
+        let root = SimpleNode(value: "Apple")
         
-        let desktops = Node(value: "Desktops")
+        let desktops = SimpleNode(value: "Desktops")
         root.addChild(node: desktops)
         
-        let macPro = Node(value: "Mac Pro")
+        let macPro = SimpleNode(value: "Mac Pro")
         desktops.addChild(node: macPro)
         
-        let macMini = Node(value: "Mac Mini")
+        let macMini = SimpleNode(value: "Mac Mini")
         desktops.addChild(node: macMini)
         
-        let iMac = Node(value: "iMac")
+        let iMac = SimpleNode(value: "iMac")
         desktops.addChild(node: iMac)
         
-        let notebooks = Node(value: "Notebooks")
+        let notebooks = SimpleNode(value: "Notebooks")
         root.addChild(node: notebooks)
         
-        let macBookPro = Node(value: "MacBook Pro")
+        let macBookPro = SimpleNode(value: "MacBook Pro")
         notebooks.addChild(node: macBookPro)
         
-        let devices = Node(value: "Devices")
+        let devices = SimpleNode(value: "Devices")
         root.addChild(node: devices)
         
-        let handhelds = Node(value: "Handhelds")
+        let handhelds = SimpleNode(value: "Handhelds")
         devices.addChild(node: handhelds)
         
-        let ipod = Node(value: "iPod")
+        let ipod = SimpleNode(value: "iPod")
         handhelds.addChild(node: ipod)
         
-        let iphone = Node(value: "iPhone")
+        let iphone = SimpleNode(value: "iPhone")
         handhelds.addChild(node: iphone)
         
-        let newton = Node(value: "Newton")
+        let newton = SimpleNode(value: "Newton")
         handhelds.addChild(node: newton)
         
-        let setTopBoxes = Node(value: "Set-top boxes")
+        let setTopBoxes = SimpleNode(value: "Set-top boxes")
         devices.addChild(node: setTopBoxes)
         
-        let appleTV = Node(value: "Apple TV")
+        let appleTV = SimpleNode(value: "Apple TV")
         setTopBoxes.addChild(node: appleTV)
         
-        let ipodHiFi = Node(value: "iPod HiFi")
+        let ipodHiFi = SimpleNode(value: "iPod HiFi")
         devices.addChild(node: ipodHiFi)
         
         XCTAssertEqual(ipod.siblings, [iphone, newton])

@@ -1,23 +1,50 @@
 # Nodes
 
-Nodes provides a generic tree data structure with support of multiple children. Written in Swift.
+Nodes is a class protocol for tree data structures.
+A `class` which conforms the `Node`-Protocol, will gain useful properties to easily navigate in the tree. 
 
 ## Usage
 
-Create a new `Node` with `init(value: T)` :
+Create a new `class` and conform it to the `Node`-Protocol:
+
+```
+final class SimpleNode: Node {
+    typealias Value = String
+    var value: Value
+    weak var parent: SimpleNode?
+    var children: [SimpleNode]
+    
+    init(value: Value) {
+        self.value = value
+        self.children = []
+    }
+}
+
+extension SimpleNode: Equatable, CustomStringConvertible {
+    static func == (lhs: SimpleNode, rhs: SimpleNode) -> Bool {
+        return lhs.value == rhs.value && lhs.parent == rhs.parent
+    }
+
+    public var description: String {
+        return "\(value)"
+    }
+}
+```
+
+Create a root node:
 
 ```swift
-let root = Node(value: "Hand")
+let root = SimpleNode(value: "Hand")
 ```
 
 Add children with `addChild(node: Node)`:
 
 ```swift
-root.addChild(node: Node(value: "Thumb"))
-root.addChild(node: Node(value: "Index finger"))
-root.addChild(node: Node(value: "Middle finger"))
-root.addChild(node: Node(value: "Ring finger"))
-root.addChild(node: Node(value: "Little finger"))
+root.addChild(node: SimpleNode(value: "Thumb"))
+root.addChild(node: SimpleNode(value: "Index finger"))
+root.addChild(node: SimpleNode(value: "Middle finger"))
+root.addChild(node: SimpleNode(value: "Ring finger"))
+root.addChild(node: SimpleNode(value: "Little finger"))
 ```
 
 Print tree to console:
@@ -141,45 +168,45 @@ var lineBasedDescription: String
 ## Example
 
 ```swift
-let root = Node(value: "Apple")
+let root = SimpleNode(value: "Apple")
 
-let desktops = Node(value: "Desktops")
+let desktops = SimpleNode(value: "Desktops")
 root.addChild(node: desktops)
 
-let macPro = Node(value: "Mac Pro")
+let macPro = SimpleNode(value: "Mac Pro")
 desktops.addChild(node: macPro)
 
-let macMini = Node(value: "Mac Mini")
+let macMini = SimpleNode(value: "Mac Mini")
 desktops.addChild(node: macMini)
 
-let iMac = Node(value: "iMac")
+let iMac = SimpleNode(value: "iMac")
 desktops.addChild(node: iMac)
 
-let notebooks = Node(value: "Notebooks")
+let notebooks = SimpleNode(value: "Notebooks")
 root.addChild(node: notebooks)
 
-let macBookPro = Node(value: "MacBook Pro")
+let macBookPro = SimpleNode(value: "MacBook Pro")
 notebooks.addChild(node: macBookPro)
 
-let devices = Node(value: "Devices")
+let devices = SimpleNode(value: "Devices")
 root.addChild(node: devices)
 
-let handhelds = Node(value: "Handhelds")
+let handhelds = SimpleNode(value: "Handhelds")
 devices.addChild(node: handhelds)
 
-let ipod = Node(value: "iPod")
+let ipod = SimpleNode(value: "iPod")
 handhelds.addChild(node: ipod)
 
-let iphone = Node(value: "iPhone")
+let iphone = SimpleNode(value: "iPhone")
 handhelds.addChild(node: iphone)
 
-let newton = Node(value: "Newton")
+let newton = SimpleNode(value: "Newton")
 handhelds.addChild(node: newton)
 
-let setTopBoxes = Node(value: "Set-top boxes")
+let setTopBoxes = SimpleNode(value: "Set-top boxes")
 devices.addChild(node: setTopBoxes)
 
-let appleTV = Node(value: "Apple TV")
+let appleTV = SimpleNode(value: "Apple TV")
 setTopBoxes.addChild(node: appleTV)
 
 

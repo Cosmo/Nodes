@@ -1,19 +1,20 @@
-public class Node<T: Equatable> {
-    public var value: T
-    public weak var parent: Node?
+public protocol Node: class, Equatable {
+    associatedtype Value
+    var value: Value { get set }
+    var parent: Self? { get set }
     
     /// Holds an array of sub-nodes
-    public var children = [Node]()
+    var children: [Self] { get set }
     
-    public init(value: T) {
-        self.value = value
-    }
-    
+    init(value: Value)
+}
+
+extension Node {
     // MARK: - Ancestors
     
     /// Returns all parent nodes.
-    public var ancestors: [Node] {
-        var nodes = [Node]()
+    public var ancestors: [Self] {
+        var nodes = [Self]()
         if let parent = parent {
             nodes.append(parent)
             nodes.append(contentsOf: parent.ancestors)
@@ -22,7 +23,7 @@ public class Node<T: Equatable> {
     }
     
     /// Returns all parent nodes, including the current node.
-    public var ancestorsIncludingSelf: [Node] {
+    public var ancestorsIncludingSelf: [Self] {
         return [self] + ancestors
     }
     
@@ -32,14 +33,14 @@ public class Node<T: Equatable> {
     }
     
     /// Returns the top node.
-    public var root: Node {
+    public var root: Self {
         return parent?.root ?? self
     }
     
     // MARK: - Descendants
     
     /// Adds a sub-node.
-    public func addChild(node: Node) {
+    public func addChild(node: Self) {
         children.append(node)
         node.parent = self
     }
@@ -50,8 +51,8 @@ public class Node<T: Equatable> {
     }
     
     /// Returns all descendants, traversing the entire tree.
-    public var descendants: [Node] {
-        var nodes = [Node]()
+    public var descendants: [Self] {
+        var nodes = [Self]()
         if isBranch {
             nodes.append(contentsOf: children)
             for child in children {
@@ -69,7 +70,7 @@ public class Node<T: Equatable> {
     }
     
     /// Returns all nodes with no children.
-    public var leaves: [Node] {
+    public var leaves: [Self] {
         return children.filter { $0.isLeaf }
     }
     
@@ -86,19 +87,19 @@ public class Node<T: Equatable> {
     }
     
     /// Returns all nodes with at least one child.
-    public var branches: [Node] {
+    public var branches: [Self] {
         return children.filter { $0.isBranch }
     }
     
     // MARK: - Siblings
     
     /// Returns all other nodes with the same parent.
-    public var siblings: [Node] {
+    public var siblings: [Self] {
         return siblingsIncludingSelf.filter { $0 != self }
     }
     
     /// Returns all nodes (including the current node) with the same parent.
-    public var siblingsIncludingSelf: [Node] {
+    public var siblingsIncludingSelf: [Self] {
         return parent?.children ?? []
     }
     
@@ -134,17 +135,5 @@ extension Node {
                             previousPrefixes.childrenPrefix + currentPrefixStrings.childrenPrefix)
             return $0 + $1.buildLines(prefixes)
         }
-    }
-}
-
-extension Node: CustomStringConvertible {
-    public var description: String {
-        return "\(value)"
-    }
-}
-
-extension Node: Equatable {
-    public static func == (lhs: Node, rhs: Node) -> Bool {
-        return lhs.value == rhs.value && lhs.parent == rhs.parent
     }
 }
