@@ -1,6 +1,6 @@
-public protocol Node: class, Equatable {
+public protocol Node: AnyObject {
     associatedtype Value
-    var value: Value { get set }
+    var value: Value { get }
     var parent: Self? { get set }
     
     /// Holds an array of sub-nodes
@@ -95,7 +95,7 @@ extension Node {
     
     /// Returns all other nodes with the same parent.
     public var siblings: [Self] {
-        return siblingsIncludingSelf.filter { $0 != self }
+        return siblingsIncludingSelf.filter { $0 !== self }
     }
     
     /// Returns all nodes (including the current node) with the same parent.
@@ -130,7 +130,7 @@ extension Node {
     
     private func buildLines(_ previousPrefixes: PrefixStrings = ("", "")) -> String {
         return children.reduce("\(previousPrefixes.prefix)\(value)\n") {
-            let currentPrefixStrings = children.last == $1 ? lastLinePrefixes : linePrefixes
+            let currentPrefixStrings = children.last === $1 ? lastLinePrefixes : linePrefixes
             let prefixes = (previousPrefixes.childrenPrefix + currentPrefixStrings.prefix,
                             previousPrefixes.childrenPrefix + currentPrefixStrings.childrenPrefix)
             return $0 + $1.buildLines(prefixes)
